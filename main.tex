@@ -1,0 +1,128 @@
+% !TeX encoding = UTF-8
+%% \textbf{重庆大学}通用毕业论文\LaTeXe{}模板
+%%% 使用前请先阅读使用文档和用户协议，内有详细介绍。Happy Texing! :)
+%% =======================================================
+\documentclass%
+	[type=master, bilinguallist=apart, 
+	printmode=oneside, blindtrail=true]{cquthesis}%
+% 可用选项：
+% type=[bachelor|master|doctor],      % 必选，毕业论文类型，以下项目不填时为默认
+% liberalformat,                      % 可选，仅适用本科生，使用文学类论文标题格式，默认未打开
+% proffesionalmaster=[true|false],    % 可选，仅适用研究生，是(true)否(false)专业硕士，默认为否
+% printmode=[oneside|twoside|auto],	  % 可选，论文打印方式，默认采用auto按页数要求自动判定
+% openany,|openright,                 % 可选，双面打印时每章的第一页仅右页开启，默认右页开启(openright)
+% bilinguallist=[off|combined|apart], % 可选，图录表录等分别按双语题注混编(combined)，分开编录(apart)，默认关(off)
+% blindtrail,                         % 可选，盲审模式，开启后封面姓名和致谢部分会隐藏，详情请参阅用户文档，默认关
+% draft,                              % 写作期间可选，不渲染图片，关闭外围功能，加快预览速度，默认未开启
+
+% 请在cquthesis.sty文件中定义其他会用到的宏包和自己的变量
+% 这样可以防止main.tex太过臃肿。
+\usepackage{cquthesis}
+
+% 定义所有的图片文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+% 定义数字圆
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
+
+%*** 写作时，使用这个命令只渲染你想查看的部分，提升工作效率，定稿时注释掉整行
+% \includeonly{contents/introduction}
+% \includeonly{contents/related_work}
+% \includeonly{contents/MGRCL}
+% \includeonly{contents/S2V}
+
+
+\begin{document}
+
+
+\input{contents/cover}
+% 封面部分
+% \makecover
+
+\frontmatter %%%前置部分(封面后绪论前)
+\cquauthpage[contents/cover1.pdf]
+\cquauthpage[contents/cover2.pdf]
+%\cquauthpage[contents/cover3.pdf]
+%\cquauthpage[contents/cover4.pdf]
+
+%% 原创声明和授权说明书，可选：用扫描页替换
+%\cquauthpage[authscan.pdf]
+%\cquauthpage
+
+% 摘要
+\makeabstract
+
+%% 目录，注意需要多次编译才能更新
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{20pt}
+\tableofcontents
+
+
+% \setlength{\cftbeforelottitleskip}{0pt}
+% \setlength{\cftafterlottitleskip}{20pt}
+%% 插图索引，可选，如不用可注释掉
+\renewcommand*{\listfigurename}{图目录}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{图目录}
+\listoffigures
+%\listoffiguresEN
+% \setlength{\cftbeforelottitleskip}{0pt}
+% \setlength{\cftafterlottitleskip}{20pt}
+%% 表格索引，可选
+\renewcommand*{\listtablename}{表目录}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{表目录}
+\listoftables
+%\listoftablesEN
+%% 公式索引，可选
+%\listofequations
+%\listofequationsEN
+%% 符号对照表，可选
+% \clearpage
+% \phantomsection 
+% \addcontentsline{toc}{chapter}{主要符号对照表}
+% \input{contents/denotation}
+% %% 缩略语对照表，可选
+% \clearpage
+% \phantomsection 
+% \addcontentsline{toc}{chapter}{缩略语对照表}
+% \input{contents/abbreviate}
+
+\mainmatter %%% 主体部分(绪论开始，结论为止)
+%* 子文件的多少和内容由你决定（最好以章为单位），基本原则是提速预览、脉络清晰、管理容易。
+
+% 设置字号为小四
+\renewcommand{\normalsize}{\fontsize{12pt}{20pt}\selectfont}
+% 设置小四正文行间距为 20 磅
+\setstretch{1.312}
+
+\include{contents/introduction}
+\include{contents/related_work}
+\include{contents/MGSRCL}
+\include{contents/SVMSMA}
+\include{contents/conclusion}
+%\include{contents/yourFreeChoise}
+
+\backmatter %%% 后置部分(致谢、参考文献、附录等)
+
+%% 参考文献
+% 顺序编码制：cqunumerical		
+% 注意：至少需要引用一篇参考文献，否则下面两行会引起编译错误。
+% \bibliographystyle{cqunumerical}
+\bibliographystyle{gbt7714-numerical_new}
+\bibliography{ref/refs}
+
+
+%% 附录(按ABC...分节，证明、推导、程序、个人简历等)
+\appendix
+\include{contents/appendix}
+
+
+%% 致谢
+% \include{contents/ack}
+
+\end{document}

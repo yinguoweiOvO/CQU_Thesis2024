@@ -1,0 +1,76 @@
+\cqusetup{
+%	************	注意	************
+%	* 1. \cqusetup{}中不能出现全空的行，如果需要全空行请在行首注释
+%	* 2. 不需要的配置信息可以放心地坐视不理、留空、删除或注释（都不会有影响）
+%	*
+%	********************************
+% ===================
+%	论文的中英文题目
+% ===================
+  ctitle = {基于多元关系建模的少样本分类算法研究},
+  etitle = {Research on Few-Shot Classification Algorithms Based on Multivariate Relationship Modeling},
+% ===================
+% 作者部分的信息
+% \secretize{}为盲审标记点，在打开盲审开关时内容会自动被替换为***输出，盲审开关默认关闭
+% ===================
+  cauthor = \secretize{尹国伟},	% 你的姓名，以下每项都以英文逗号结束
+  eauthor = \secretize{Guowei~Yin},	% 姓名拼音，~代表不会断行的空格
+  studentid = \secretize{},	% 仅本科生，学号
+  csupervisor = \secretize{黄~~~晟~~~~~教授},	% 导师的姓名
+  esupervisor = \secretize{{Prof.~Sheng Huang}},	% 导师的姓名拼音
+  cassistsupervisor = \secretize{}, % 本科生可选，助理指导教师姓名，不用时请留空为{}
+  cextrasupervisor = \secretize{}, % 本科生可选，校外指导教师姓名，不用时请留空为{}
+  eassistsupervisor = \secretize{}, % 本科生可选，助理指导教师或/和校外指导教师姓名拼音，不用时请留空为{}
+  cpsupervisor = \secretize{}, % 仅专硕，兼职导师姓名
+  epsupervisor = \secretize{},	% 仅专硕，兼职导师姓名拼音
+  cclass = \secretize{\rmfamily{2023}\heiti{年}\rmfamily{6}\heiti{月}},	% 博士生和学硕填学科门类，学硕填学科类型
+  research_direction = \zihao{3}{工学},
+  edgree = {},	% 专硕填Professional Degree，其他按实情填写
+% % 提示：如果内容太长，可以用\zihao{}命令控制字号，作用范围：{}内
+  cmajor = 工~~~~学,	% 专硕不需填，填写专业名称
+  emajor = , % % 专硕不需填，填写专业英文名称
+  cmajora = \zihao{3}{软件工程},
+  cmajorb = \zihao{3}{计算机视觉},
+  cmajorc = \secretize{},
+  % cmajord = 2024年6月,
+% ===================
+% 底部的学院名称和日期
+% ===================
+  cdepartment = ,	%学院名称
+  edepartment = ,	%学院英文名称
+% ===================
+% 封面的日期可以自动生成（注释掉时），也可以解除注释手动指定，例如：二〇一六年五月
+% ===================
+%	mycdate = {2023年6月},
+%	myedate = {June 2023},
+}% End of \cqusetup
+% ===================
+%
+% 论文的摘要
+%
+% ===================
+\begin{cabstract}	% 中文摘要
+近年来，深度学习技术已在诸多图像分类任务上取得了显著成就，但这些任务的成功往往依赖于海量的标注数据，在数据匮乏的情况下，很多深度学习模型便无法精确识别物体类别。为了提升深度学习模型在数据匮乏情况下的效果，旨在模拟人类识别物体过程的少样本分类（Few-Shot Classification，简称FSC）被提出并取得了一定进展。在少样本分类任务中，如何将模型在大量数据上学习到的知识迁移到新的类别是解决问题的关键。虽然基类数据与新类数据的类别不同，但其数据间的多种关系是具有相似性和关联性的。通过在基类数据上对这些关系进行建模，可以更好地理解与挖掘数据间的内在联系，从而将在基类上学习到的知识迁移至新类。基于此，本文以数据的多元关系为切入点，对多粒度样本关系和语义-视觉多空间关系进行建模，以推动少样本分类问题的研究进展。本文主要工作如下：
+
+（1）针对少样本分类模型特征提取能力不足的问题，本文开展基于多粒度样本关系建模的少样本分类研究，提出了多粒度样本关系对比学习（Multi-Grained Sample Relation Contrastive Learning，简称MGSRCL）模型。该模型将样本关系划分为三种类型：样本内关系、类内关系和类间关系，并使用变换一致性学习约束样本内关系，使用类对比学习约束类内关系与类间关系，对多种粒度的样本关系进行充分挖掘与细致建模。在多个基准数据集上的大量实验证明，MGSRCL方法通过建模多粒度样本关系提升了模型的特征提取能力与泛化能力，有效提高了少样本分类准确率，并为其他两阶段方法提供了一个优质的预训练模型。
+
+（2）针对仅根据少量样本的视觉特征无法捕获类别代表性特征的问题，本文开展基于语义-视觉多空间关系建模的少样本分类研究，提出了语义-视觉多空间映射适配（Semantic-Visual Multi-Space Mapping Adapter，简称SVMSMA）模型。该模型引入语义信息作为视觉信息的补充，通过语义-视觉多空间映射网络将语义特征映射到视觉空间，并使用简单有效的跨模态分类和跨模态特征对齐策略对语义特征与视觉特征进行建模。大量实验证明，SVMSMA模型能够有效建立语义信息与视觉信息的联系，丰富了样本特征的信息来源，从而能够利用语义信息提升样本特征的多样性，增强模型对新类别的适应能力和泛化能力，并在MGSRCL的基础上进一步提升了少样本分类准确率。
+
+\end{cabstract}
+% 中文关键词，请使用英文逗号分隔：
+\ckeywords{少样本分类；关系建模；对比学习；语义信息表示}
+
+\begin{eabstract}	% 英文摘要
+
+In recent years, deep learning technology has made remarkable achievements in image classification tasks. But the success of these tasks often depends on vast amounts of labeled data, and in the absence of data, many deep learning models are unable to accurately identify object categories. In order to improve the effectiveness of deep learning models in the case of data scarcity, Few-Shot Classification (FSC), which aims to simulate the object recognition process of human, has been proposed and made some progress. In FSC, how to transfer the knowledge learned by the model on a large amount of data to new categories is the key to solve the problem. Although the categories of the base classes and the novel classes are different, the relationship between the data is similar and relevant. By modeling these relationships on the base classes, the internal relationship between the data can be better understood and mined, so that the knowledge learned on the base classes can be transferred to the novel classes. Based on this, this paper takes the multivariate relationship of data as the starting point to model the multi-grained sample relation and semantic-visual multi-space relation, so as to promote the research progress of FSC. The main works of this paper are as follows:
+
+(1) Aiming at the lack of feature extraction ability of FSC model, this paper carries out a study of FSC based on multi-grained sample relationship modeling, and proposes a Multi-Grained Sample Relation Contrastive Learning (MGSRCL) model. The model divides the sample relations into three types: intra-sample relation, intra-class relation and inter-class relation, and uses transformation consistency learning to constrain intra-sample relation, uses class contrastive learning to constrain intra-class relation and inter-class relation, so as to fully mine and carefully model the sample relations of various granularity. Extensive experiments on multiple benchmark datasets prove that MGSRCL can improve the feature extraction ability and generalization ability of the model by modeling multi-grained sample relations, effectively improve the accuracy of FSC, and provide an excellent pre-training model for other two-stage methods.
+
+(2) In view of the problem that the category representative features cannot be captured only based on the visual features of a small number of samples, this paper carries out a research on FSC based on semantic-visual multi-space relationship modeling, and proposes a Semantic-Visual Multi-Space Mapping Adapter (SVMSMA) model. The model introduces semantic information as a supplement to visual information, maps semantic features to visual space through semantic-visual multi-space mapping network, and uses simple and effective cross-modal classification and cross-modal feature alignment strategies to model semantic features and visual features. Extensive experiments have proved that SVMSMA model can effectively establish the connection between semantic information and visual information, enrich the information sources of sample features, and thus improve the diversity of sample features by using semantic information, enhance the model's adaptability and generalization ability to new categories, and further improve the accuracy of FSC on the basis of MGSRCL.
+ 
+\end{eabstract}
+% 英文关键词，请使用英文逗号分隔，关键词内可以空格：
+\ekeywords{Few-Shot Classification, Relationship Modeling, Contrastive Learning, Semantic Information Representation
+}
+
+% 封面和摘要配置完成

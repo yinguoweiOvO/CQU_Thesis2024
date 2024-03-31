@@ -1,0 +1,196 @@
+\ProvidesPackage{cquthesis}[2016/06/09 The place for your beloved packages and customization.]
+
+%=====你可以在这里使用\RequirePackage[包选项]{包名称}导入想用的Package=======
+\usepackage{hyperref}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{simsun.ttf}[AutoFakeSlant,AutoFakeBold]
+
+\usepackage[linesnumbered,ruled,vlined,resetcount,algochapter]{algorithm2e}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{subeqnarray}
+\usepackage{cases}
+
+\usepackage{dutchcal}
+\usepackage{xeCJK}
+
+\usepackage{lastpage} % 导入lastpage宏包
+
+\usepackage{xltabular}
+% \usepackage{microtype}
+
+\usepackage{titlesec}
+
+% overleaf
+\newfontfamily\stxingkai{STXingKai.ttf}
+% 调整间距
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+% 目录格式设置
+\usepackage{tocloft}
+
+% 设置目录标题为黑体三号
+\renewcommand{\cfttoctitlefont}{\centering\heiti\fontsize{16}{20}\selectfont\hspace*{\fill}}
+% 设置一级标题的字体样式
+\renewcommand{\cftchapfont}{\bf\zihao{4}}
+% 设置二级标题的字体样式
+\renewcommand{\cftsecfont}{\bf\zihao{5}}
+\renewcommand{\cftsecindent}{12bp}
+% 设置三级标题的字体样式和缩进
+\renewcommand{\cftsubsecfont}{\zihao{5}}
+\renewcommand{\cftsubsecindent}{25bp}
+% 设置章标题的编号宽度
+\setlength{\cftchapnumwidth}{0em} 
+% 设置章标题的编号和标题之间的间距
+\renewcommand{\cftchapaftersnum}{\hspace{1em}} 
+% 设置二级标题的编号宽度
+\setlength{\cftsecnumwidth}{0em} 
+% 设置二级标题的编号和标题之间的间距
+\renewcommand{\cftsecaftersnum}{\hspace{1em}} 
+% 设置三级标题的编号宽度
+\setlength{\cftsubsecnumwidth}{0em} 
+% 设置三级标题的编号和标题之间的间距
+\renewcommand{\cftsubsecaftersnum}{\hspace{1em}} 
+% 设置页码字体
+% \renewcommand{\cftchappagefont}{\normalfont}
+% \renewcommand{\cftsecpagefont}{\normalfont}
+% \renewcommand{\cftsubsecpagefont}{\normalfont}
+
+
+% centering
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+  
+% 消除章节之间的间距
+\newcommand{\removelofgap}{\addtocontents{lof}{\vspace{-10pt}}}
+\newcommand{\removelotgap}{\addtocontents{lot}{\vspace{-10pt}}}
+
+% 设置 listoffigures 和 listoftables 标题字体为三号黑体
+\renewcommand{\cftloftitlefont}{\centering\heiti\fontsize{16}{20}\selectfont\hspace*{\fill}}
+\renewcommand{\cftlottitlefont}{\centering\heiti\fontsize{16}{20}\selectfont\hspace*{\fill}}
+
+% 在 listoffigures 和 listoftables 标题前后各空一行
+% 这是之前的版本，但实际观感和word有所区别，现在微调一下值，这些值是在overleaf上的XeLaTex上试出来的
+% \renewcommand{\cftbeforeloftitleskip}{\baselineskip} % 标题前空一行
+% \renewcommand{\cftafterloftitleskip}{\baselineskip} % 标题后空一行
+% \renewcommand{\cftbeforelottitleskip}{\baselineskip} % 标题前空一行
+% \renewcommand{\cftafterlottitleskip}{\baselineskip} % 标题后空一行
+\setlength{\cftbeforeloftitleskip}{-1mm} % 标题前空一行
+\setlength{\cftafterloftitleskip}{6.5mm} % 标题后空一行
+\setlength{\cftbeforelottitleskip}{-1mm}
+\setlength{\cftafterlottitleskip}{10mm} % 标题后空一行
+
+\usepackage{setspace}
+
+
+%=====以及定义你自己的功能和常量=======
+\newcommand{\speakyourlove}[1][Mom]{\emph{#1, I Love You!}} 
+% 晶向指数支持，如果需要请取消下面两行注释：
+% \RequirePackage{miller}
+% \pretocmd{\hkl}{{ }}{}{}
+%
+% 物理符号宏包：
+%\RequirePackage{physics}
+%
+% 计算机算法宏包：
+\RequirePackage{algorithmic}
+%
+% 绘图宏包：
+%\RequirePackage{tikz}
+%
+% 绘制电路图：
+%\RequirePackage{circuitikz} 
+
+% 这两个个宏包仅供参考，未必使用：
+% \RequirePackage{floatflt} % 图文混排用宏包
+% \RequirePackage{rotating} % 图形和表格的控制旋转
+
+%========一些推荐功能=========
+% 用中文双引号括起文字
+\newcommand{\qthis}[1]{{``}#1{''}}
+%交叉引用图X、表X、方程X（此处为向前兼容，强烈推荐使用\autoref{label}）
+\newcommand{\figref}[1]{图\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+%\eqref已经改写过
+
+%================================
+%**********代码开发区域***********
+%================================
+
+% 借用 ltxdoc 里面的几个命令。
+\def\cmd#1{\cs{\expandafter\cmd@to@cs\string#1}}
+\def\cmd@to@cs#1#2{\char\number`#2\relax}
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\DeclareRobustCommand\csgo[2]{\cs{#1\{#2\}}}
+
+\newcommand*{\meta}[1]{{%
+		\ensuremath{\langle}\rmfamily\itshape#1\/\ensuremath{\rangle}}}
+\providecommand\marg[1]{%
+	{\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}}
+\providecommand\oarg[1]{%
+	{\ttfamily[}\meta{#1}{\ttfamily]}}
+\providecommand\parg[1]{%
+	{\ttfamily(}\meta{#1}{\ttfamily)}}
+\providecommand\pkg[1]{{\sffamily#1}}
+
+% 文件夹列表
+\usepackage{dirtree}
+% The following is a dummy icon command
+\newcommand\myicon[1]{{\color{#1}\rule{2ex}{2ex}}}
+% If you have actual icon images, use \includegraphics to include them
+% If you are generating them, put in the appropriate code for them here
+% now we make a command for a folder/file which inserts the icon and its label
+% adjust this as needed. If you only have 2 icons, then you could create
+% a \myfile and \myfolder command with the icon fixed.
+\newcommand{\myfolder}[2]{\myicon{#1}\ {#2}}
+
+% \renewcommand{\@pnumwidth}{1.9em}
+\cftsetpnumwidth{1.9em}
+% 定义一个命令来设置页码的宽度
+% \newlength{\pagenumwidth}
+% \settowidth{\pagenumwidth}{99} % 设置一个初始值，确保足够宽以容纳最大可能的页码
+
+\renewcommand{\cftchappagefont}{\leaders\hbox{.}\hfill\zihao{5}}
+\renewcommand{\cftsecpagefont}{\leaders\hbox{.}\hfill\zihao{5}}
+\renewcommand{\cftsubsecpagefont}{\leaders\hbox{.}\hfill\zihao{5}}
+\renewcommand{\cftdot}{.\zihao{5}}
+
+\usepackage{titletoc} % 引入 titletoc 宏包
+
+\renewcommand{\cftfigfont}{\fontsize{10.5}{15}图~\selectfont\parskip0pt\parindent0pt} % 图标题样式
+\renewcommand{\cfttabfont}{\fontsize{10.5}{15}表~\selectfont\parskip0pt\parindent0pt} % 表标题样式
+
+% 设置图目录页码样式
+\renewcommand{\cftfigpagefont}{\leaders\hbox{.}\hfill\zihao{5}}
+% 设置表目录页码样式
+\renewcommand{\cfttabpagefont}{\leaders\hbox{.}\hfill\zihao{5}}
+
+% 设置图表目录左对齐
+\cftsetindents{figure}{0pt}{0pt} % 图目录缩进
+\cftsetindents{table}{0pt}{0pt} % 表目录缩进
+% 调整编号与标题之间的间距
+\renewcommand{\cftfignumwidth}{0em} % 图编号宽度
+\renewcommand{\cfttabnumwidth}{0em} % 表编号宽度
+
+
+\usepackage{subcaption}
+\usepackage[cal=cm]{mathalfa}
+
+\newcommand{\hollowstar}{\text{\ding{73}}}
+
+\newcommand{\bilingualcaption}[3]{%
+\caption[#1]{#2 \\ Table \thechapter.\arabic{table} #3}%
+}
+
+\renewcommand\bibnumfmt[1]{[#1]\hfill}
+
+% \newenvironment{myxltabular}[2]{%
+%   \begin{xltabular}{#1}{#2}%
+% }{%
+%   \end{xltabular}%
+% }
