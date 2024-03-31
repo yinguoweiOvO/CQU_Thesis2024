@@ -9,13 +9,13 @@
 4）三线表顶部线和底部线加粗问题，word中比此模板要粗一些
 以上问题在格式要求中均没有具体要求，因此未作修改
 
-本项目基于以下仓库，使用说明也在以下仓库中：
+## 本项目基于以下仓库，使用说明也在以下仓库中：
 1. https://github.com/nanmu42/CQUThesis.git
 2. https://github.com/neardws/My-Doctoral-Dissertation
 
 感谢重庆大学Tex组以及neardws师兄
 
-一些更改内容：
+## 一些更改内容：
 1. 修改目录、图表目录点线连接
 2. 修改引用标号左对齐
 3. 修改页眉页脚位置
