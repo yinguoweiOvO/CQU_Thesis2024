@@ -30,7 +30,7 @@
 
 针对这三种不同粒度的样本关系，MGSRCL提出了两个模块对其进行约束。首先对于同一样本不同变换间的样本内关系，本文通过变换一致性学习（Transformation Consistency Learning，简称TCL）策略进行约束。这一策略的灵感来源于这样一个认识：同一样本在不同但轻微的变换下应保持其本质的语义不变性。TCL通过对齐样本及其变换版本的预测标签分布来确保其在标签输出上的一致性，从而保证样本和其不同变换版本在特征空间保持高度的语义一致性。第二种样本关系是同类样本的类内关系，由于同类样本的语义内容不像同一样本不同变换那样高度一致，忽视同类样本之间的语义差异并将它们映射到特征空间中的同一位置会因为简化了模型的学习过程而导致模型崩塌。因此，本文采用类对比学习（Class Contrastive Learning，简称CCL）来以一种相对的形式约束这种样本关系以及第三种样本关系，即不同类样本的类间关系。CCL不追求同类样本在特征空间中的绝对一致性，而着重于以一种相对距离的方式在特征空间中增强同类样本间的内聚程度，同时增大不同类别间的分离程度，从而提高了模型对不同类别样本的区分能力。
 
-以验证本章方法的有效性，本章在四个基准数据集上进行了广泛的实验，包括三个普通少样本分类数据集：miniImageNet\cite{vinyals2016matching}、tieredImageNet\cite{ren2018meta}、CIFAR-FS\cite{bertinetto2018meta}，以及一个细粒度少样本分类数据集：CUB-200-2011\cite{wah2011caltech}。实验结果表明，本章方法取得了优异的结果，并且可以作为预训练模型提升其他两阶段少样本分类方法的性能。
+以验证本章方法的有效性，本章在四个基准数据集上进行了广泛的实验，包括三个普通少样本分类数据集：miniImageNet\cite{vinyals2016matching}、tieredImageNet\cite{ren2018meta}、CIFAR-FS\cite{bertinetto2019meta}，以及一个细粒度少样本分类数据集：CUB-200-2011\cite{wah2011caltech}。实验结果表明，本章方法取得了优异的结果，并且可以作为预训练模型提升其他两阶段少样本分类方法的性能。
 
 
 \section[\hspace{-2pt}基于多粒度样本关系对比学习的少样本特征学习算法]{{\heiti\zihao{-3} \hspace{-8pt}基于多粒度样本关系对比学习的少样本特征学习算法}}\label{section3: 基于多粒度样本关系对比学习的少样本特征学习算法}
@@ -97,7 +97,7 @@ $\widehat{y}^{(m)}$表示分类任务中的预测概率输出，$y^{(m)}$表示�
 
 \textbf{（1）变换一致性学习}
 
-一个样本图像与其变换版本包含完全相同的对象和背景，仅因为进行了数据增强而使得图像在旋转角度、明暗、颜色等方面发生变化，但其内在的类别属性和语义内容应保持不变。为了实现这一目标，本文设计了一个变换一致性学习（Transformation Consistency Learning，简称TCL）模块，以约束同一样本不同变换版本的样本内关系。TCL模块通过约束一个样本和其变换版本的预测输出相同来确保它们具有一致的语义内容。这是因为预测输出反映了样本在每个类别中的预测概率，这些概率不仅表示了模型对于样本属于各个类别的置信度，而且深入地揭示了样本的本质属性——亦即其语义内容。
+一个样本图像与其变换版本包含完全相同的对象和背景，仅因为进行了数据增强而使得图像在旋转角度、明暗、颜色等方面发生变化，但其内在的类别属性和语义内容应保持不变。为了实现这一目标，本文设计了一个变换一致性学习（Transformation Consistency Learning，简称TCL）模块，以约束同一样本不同变换版本的样本内关系。TCL模块通过约束一个样本和其变换版本的预测输出相同来确保它们具有一致的语义内容。这是因为预测输出反映了样本在每个类别中的预测概率，这些概率不仅表示了模型对于样本属于各个类别的置信度，而且深入地揭示了样本的本质属性——语义内容。
 
 本章方法将一个样本与其变换版本同时输入网络，并在预测标签输出层面计算它们的TCL损失。这里，本文使用Jensen-Shannon散度\cite{JS1, JS2}作为TCL损失，它能够衡量两个概率分布的差异，通过最小化两个预测标签的输出，可以使其概率分布一致，从而达到使样本和其变换版本具有一致语义内容的目的。TCL损失可以写为以下公式，
 \begin{equation}
@@ -157,7 +157,7 @@ MGSRCL模型通过在整个基类数据集上最小化上述损失函数对模�
 
 \textbf{（1）实验数据集介绍}
 
-本文在四个常用的少样本分类基准数据集上进行了实验，其中包括三个普通少样本分类数据集：miniImageNet \cite{vinyals2016matching}、tieredImageNet \cite{ren2018meta}、CIFAR-FS \cite{bertinetto2018meta}，以及一个细粒度数据集：CUB-200-2011（CUB）\cite{wah2011caltech}。对于所有数据集，本文保持了与其他工作\cite{RFS, RENet, IER}相同的划分准则。在实验中，对于miniImageNet、tieredImageNet和CUB，图像大小为84$\times$84，而对于CIFAR-FS，图像大小为32$\times$32。
+本文在四个常用的少样本分类基准数据集上进行了实验，其中包括三个普通少样本分类数据集：miniImageNet \cite{vinyals2016matching}、tieredImageNet \cite{ren2018meta}、CIFAR-FS \cite{bertinetto2019meta}，以及一个细粒度数据集：CUB-200-2011（CUB）\cite{wah2011caltech}。对于所有数据集，本文保持了与其他工作\cite{RFS, RENet, IER}相同的划分准则。在实验中，对于miniImageNet、tieredImageNet和CUB，图像大小为84$\times$84，而对于CIFAR-FS，图像大小为32$\times$32。
 
 \textbf{（2）网络结构}
 
@@ -173,7 +173,7 @@ MGSRCL模型通过在整个基类数据集上最小化上述损失函数对模�
 
 \subsection[\hspace{-2pt}基准数据集实验结果]{{\heiti\zihao{4} \hspace{-8pt}基准数据集实验结果}}\label{section3: 基准数据集实验结果}
 
-为了评估方法的有效性，本文在四个数据集上进行了广泛的实验。表\ref{table3: mini}、\ref{table3: tiered}、\ref{table3: CIFAR-FS}和\ref{table3: CUB}分别展示了miniImageNet、tieredImageNet、CIFAR-FS和CUB数据集上一些现有少样本分类方法和本文方法的实验结果。此外，本文还将所提模型作为预训练网络结合到三个两阶段少样本分类算法中，并与原方法性能进行对比以进一步验证本文所获得特征提取网络的有效性。
+为了评估方法的有效性，本文在四个数据集上进行了广泛的实验。模型评估过程中，对5-way 1-shot以及5-way 5-shot分别采样2000个任务并计算平均分类准确率作为最终实验结果。表\ref{table3: mini}、\ref{table3: tiered}、\ref{table3: CIFAR-FS}和\ref{table3: CUB}分别展示了miniImageNet、tieredImageNet、CIFAR-FS和CUB数据集上一些现有少样本分类方法和本文方法的实验结果。此外，本文还将所提模型作为预训练网络结合到三个两阶段少样本分类算法中，并与原方法性能进行对比以进一步验证本文所获得特征提取网络的有效性。另外，部分直推式少样本分类方法\cite{cui2021parameterless, qi2021transductive}虽然取得了更好的实验结果，但由于其训练过程模型可以使用测试数据，与本文设置不同，因此不与其进行对比（第四章中相同）。
 
 
 \textbf{（1）普通少样本分类}

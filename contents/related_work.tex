@@ -106,7 +106,7 @@ Devlin等人\cite{Bert}提出的BERT（Bidirectional Encoder Representations fro
 
 \section[\hspace{-2pt}数据集及评价指标]{{\heiti\zihao{-3} \hspace{-8pt}数据集及评价指标}}\label{section2: 数据集及评价指标}
 
-本文使用四个少样本分类基准数据集对模型性能进行评估，包括三个普通少样本分类数据集：miniImageNet \cite{vinyals2016matching}、tieredImageNet \cite{ren2018meta}、CIFAR-FS \cite{bertinetto2018meta}，以及一个细粒度数据集：CUB-200-2011（CUB）\cite{wah2011caltech}，以下对其进行分别介绍，并对少样本分类评价指标进行描述。
+本文使用四个少样本分类基准数据集对模型性能进行评估，包括三个普通少样本分类数据集：miniImageNet \cite{vinyals2016matching}、tieredImageNet \cite{ren2018meta}、CIFAR-FS \cite{bertinetto2019meta}，以及一个细粒度数据集：CUB-200-2011（CUB）\cite{wah2011caltech}，以下对其进行分别介绍，并对少样本分类评价指标进行描述。
 
 \begin{table}[h!]
 \small    % 设置表格字体为5号
@@ -150,7 +150,7 @@ CUB & 100 & 50 & 50 & 200 \\
 
 \subsection[\hspace{-2pt}数据集]{{\heiti\zihao{4} \hspace{-8pt}数据集}}\label{section2: 数据集}
 
-miniImageNet数据集\cite{vinyals2016matching}和tieredImageNet数据集\cite{ren2018meta}均为ImageNet\cite{deng2009imagenet}的子集。其中，miniImageNet数据集包含100个类别，每个类别有600张图像。本文遵循Ravi等人\cite{optimization}提出的划分准则，训练集、验证集和测试集分别包含64、16和20个类别。tieredImageNet数据集则包含34个超类（608个子类），分为20个训练类别（351个子类）、6个验证类别（97个子类）和8个测试类别（160个子类）。CIFAR-FS数据集\cite{bertinetto2018meta}源自CIFAR-100数据集，该数据集包含64个训练类别、16个验证类别和20个测试类别，每个类别同样有600张图像。Caltech-UCSD Birds(CUB）-200-2011（简称CUB）数据集\cite{wah2011caltech}则是一个包含不同种类的鸟类细粒度图像数据集，包含11788个图像样本，分为200个类别。根据Triantafillou等人\cite{triantafillou2017few}的划分准则，该数据集包含100个训练类别、50个验证类别和50个测试类别。各数据集划分如表\ref{table2: dataset1}和\ref{table2: dataset2}所示。
+miniImageNet数据集\cite{vinyals2016matching}和tieredImageNet数据集\cite{ren2018meta}均为ImageNet\cite{deng2009imagenet}的子集。其中，miniImageNet数据集包含100个类别，每个类别有600张图像。本文遵循Ravi等人\cite{optimization}提出的划分准则，训练集、验证集和测试集分别包含64、16和20个类别。tieredImageNet数据集则包含34个超类（608个子类），分为20个训练类别（351个子类）、6个验证类别（97个子类）和8个测试类别（160个子类）。CIFAR-FS数据集\cite{bertinetto2019meta}源自CIFAR-100数据集，该数据集包含64个训练类别、16个验证类别和20个测试类别，每个类别同样有600张图像。Caltech-UCSD Birds(CUB）-200-2011（简称CUB）数据集\cite{wah2011caltech}则是一个包含不同种类的鸟类细粒度图像数据集，包含11788个图像样本，分为200个类别。根据Triantafillou等人\cite{triantafillou2017few}的划分准则，该数据集包含100个训练类别、50个验证类别和50个测试类别。各数据集划分如表\ref{table2: dataset1}和\ref{table2: dataset2}所示。
 
 \subsection[\hspace{-2pt}评价指标]{{\heiti\zihao{4} \hspace{-8pt}评价指标}}\label{section2: 评价指标}
 
